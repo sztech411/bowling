@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('assets/style.css') ?>">
+<?php /* Panaskan cache papan pemuka supaya peralihan terasa serta-merta. */ ?>
+<link rel="prefetch" href="index.php?r=dashboard">
 <?php require __DIR__ . '/_pwa-head.php'; ?>
 </head>
 <body>
@@ -31,10 +33,26 @@
 </div>
 
 <script>
-setTimeout(function () {
-  window.location.href = 'index.php?r=dashboard';
-}, <?= (int)$loadingMs ?>);
-document.querySelector('.loadscreen__bar span').style.animationDuration = <?= (int)$loadingMs ?> + 'ms';
+(function () {
+  var total = <?= (int)$loadingMs ?>;
+  var screen = document.querySelector('.loadscreen');
+  var fill = document.querySelector('.loadscreen__bar span');
+
+  // Palang mengisi secara linear sepanjang tempoh sebenar — pergerakan
+  // sekata, bukan tersentak habis di awal.
+  fill.style.animationDuration = total + 'ms';
+
+  // Pudar keluar tepat sebelum navigasi supaya tiada lompatan mengejut.
+  var fade = Math.min(340, Math.round(total / 3));
+
+  setTimeout(function () {
+    screen.classList.add('is-leaving');
+  }, total - fade);
+
+  setTimeout(function () {
+    window.location.href = 'index.php?r=dashboard';
+  }, total);
+})();
 </script>
 </body>
 </html>

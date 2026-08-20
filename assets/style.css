@@ -657,7 +657,15 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
   background: linear-gradient(160deg, var(--paper) 0%, var(--paper-warm) 100%);
   text-align: center;
   padding: 2rem;
+  /* Sengaja tiada animasi masuk: skrin pemuatan mesti kelihatan serta-merta.
+     Animasi opacity masuk berisiko mengunci skrin pada 0 jika garis masa
+     animasi dibekukan (tab dipendam, bfcache) — skrin jadi kosong.
+     Pudar keluar pula guna transition, yang gagal dengan selamat: jika ia
+     tidak berjalan, opacity kekal 1 dan navigasi tetap berlaku. */
+  transition: opacity .34s ease-in;
 }
+/* Dipasang oleh skrip tepat sebelum navigasi ke papan pemuka. */
+.loadscreen.is-leaving { opacity: 0; }
 .loadscreen__glow {
   position: absolute;
   inset: -20%;
@@ -740,7 +748,8 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
   border-radius: 999px;
   background: linear-gradient(90deg, var(--oxblood), var(--gold));
   transform: translateX(-100%);
-  animation: loadFill 1.5s cubic-bezier(.4,0,.2,1) forwards;
+  /* Linear supaya kadar isian sepadan dengan masa sebenar berlalu. */
+  animation: loadFill 1.5s linear forwards;
 }
 
 @keyframes loadFill { to { transform: translateX(0); } }
