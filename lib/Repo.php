@@ -321,7 +321,7 @@ final class Repo
 
     // ── Skor & Prestasi ─────────────────────────────────────
 
-    public const MAX_GAMES_PER_SESSION = 3;
+    public const MAX_GAMES_PER_SESSION = 6;
     public const MAX_PINS = 300;
 
     /**

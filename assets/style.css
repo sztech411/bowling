@@ -1,29 +1,29 @@
 /* ═══════════════════════════════════════════════════════════
    PIKO TAZ — Sistem Kehadiran Latihan Boling
-   Arah reka bentuk: minimalis bersih. Kertas putih hangat, satu
-   aksen oxblood terkawal, banyak ruang kosong, garisan nipis.
+   Arah reka bentuk: cerah dan bertenaga. Kanvas putih bersih,
+   aksen warna terang penuh warna, banyak ruang kosong.
    ═══════════════════════════════════════════════════════════ */
 
 :root {
-  --paper:      #fbfaf8;
-  --paper-warm: #f4f2ee;
+  --paper:      #fdfcff;
+  --paper-warm: #eef1ff;
   --card:       #ffffff;
-  --ink:        #1a1a1a;
-  --ink-soft:   #6b6560;
-  --ink-faint:  #a8a29b;
-  --line:       #e7e3dd;
-  --line-soft:  #f0ede8;
+  --ink:        #182338;
+  --ink-soft:   #5c6788;
+  --ink-faint:  #9aa3c7;
+  --line:       #e1e6f5;
+  --line-soft:  #eef1fb;
 
-  --oxblood:   #8c2320;
-  --oxblood-d: #6d1b19;
-  --gold:      #a97c1f;
-  --gold-pale: #f7efdc;
-  --pine:      #3a6e52;
-  --pine-pale: #e6f0ea;
-  --amber:     #a2761c;
-  --amber-pale:#f8efdc;
-  --clay:      #a4402f;
-  --clay-pale: #f8e6e1;
+  --oxblood:   #ff3d68;
+  --oxblood-d: #e0234f;
+  --gold:      #ffc300;
+  --gold-pale: #fff6d9;
+  --pine:      #12c48b;
+  --pine-pale: #d9f9ec;
+  --amber:     #ff8a3d;
+  --amber-pale:#ffe9d9;
+  --clay:      #f4511e;
+  --clay-pale: #ffe3d4;
 
   --shadow-sm: 0 1px 2px rgba(20,16,12,.04);
   --shadow-md: 0 6px 20px -10px rgba(20,16,12,.14);
@@ -182,7 +182,7 @@ input:focus, select:focus, textarea:focus {
   outline: 0;
   background: #fff;
   border-color: var(--oxblood);
-  box-shadow: 0 0 0 3px rgba(140,35,32,.1);
+  box-shadow: 0 0 0 3px rgba(255,61,104,.16);
 }
 select {
   appearance: none;
@@ -216,7 +216,7 @@ input.mono { font-family: var(--mono); letter-spacing: .3em; font-size: 18px; te
 .btn:hover { opacity: .85; }
 .btn--primary { background: var(--oxblood); color: #fff; }
 .btn--primary:hover { background: var(--oxblood-d); opacity: 1; }
-.btn--gold { background: var(--gold); color: #241a02; }
+.btn--gold { background: var(--gold); color: #3d2900; }
 .btn--pine { background: var(--pine); color: #fff; }
 .btn--ghost { background: transparent; border-color: var(--line); color: var(--ink-soft); }
 .btn--ghost:hover { border-color: var(--oxblood); color: var(--oxblood); background: transparent; opacity: 1; }
@@ -327,12 +327,12 @@ input.mono { font-family: var(--mono); letter-spacing: .3em; font-size: 18px; te
   padding: .8rem 1.05rem;
   border-radius: var(--r);
   background: var(--pine-pale);
-  color: #234c39;
+  color: #0a6b4d;
   font-size: 13.5px;
   font-weight: 500;
   animation: rise .35s cubic-bezier(.2,.8,.25,1) both;
 }
-.flash--bad { background: var(--clay-pale); color: #7d2618; }
+.flash--bad { background: var(--clay-pale); color: #8f2b0d; }
 
 /* ═══ Kad ═══ */
 
@@ -619,11 +619,11 @@ input.mono { font-family: var(--mono); letter-spacing: .3em; font-size: 18px; te
   border-radius: var(--r);
   background: var(--gold-pale);
   font-size: 13.5px;
-  color: #5d4508;
+  color: #6b4c00;
   margin: 1.2rem 0 0;
 }
-.notice--ok  { background: var(--pine-pale); color: #234c39; }
-.notice--bad { background: var(--clay-pale); color: #7d2618; }
+.notice--ok  { background: var(--pine-pale); color: #0a6b4d; }
+.notice--bad { background: var(--clay-pale); color: #8f2b0d; }
 .notice b { font-weight: 700; }
 .card > .notice:first-child, .gate__form .notice { margin-top: 0; margin-bottom: 1.2rem; }
 
