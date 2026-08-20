@@ -1,9 +1,8 @@
 <link rel="manifest" href="manifest.webmanifest">
-<?php /* Beritahu pelayar kedua-dua tema disokong supaya kawalan borang,
-         bar skrol dan krom asli turut bertukar bersama halaman. */ ?>
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
+<?php /* Mod terang sahaja — kunci krom pelayar supaya ia tidak bertukar
+         gelap mengikut tetapan peranti. */ ?>
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fbfbfc">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">

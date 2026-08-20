@@ -5,7 +5,7 @@
    sempadan sehalus rambut, jejari kecil, tipografi padat, dan
    satu warna aksen yang digunakan dengan berhemat.
 
-   Mod gelap mengikut tetapan peranti (prefers-color-scheme).
+   Mod terang sahaja — tiada tema gelap, atas permintaan pengguna.
 
    Nota penting: tiada animasi masuk di mana-mana. Gerakan hanya
    untuk maklum balas interaksi (hover/fokus) dan pemintal skrin
@@ -13,7 +13,10 @@
    ═══════════════════════════════════════════════════════════ */
 
 :root {
-  color-scheme: light dark;
+  /* Mod terang sahaja atas permintaan pengguna. Mengisytiharkannya di sini
+     menghalang pelayar daripada memaksa gelap secara automatik pada
+     kawalan borang dan bar skrol. */
+  color-scheme: light;
 
   /* ── Permukaan & teks ── */
   --bg:          #fbfbfc;
@@ -75,46 +78,6 @@
   --r:    10px;
   --r-lg: 14px;
   --r-xl: 18px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:          #0b0c0e;
-    --surface:     #141619;
-    --surface-2:   #1b1e23;
-    --surface-3:   #23272e;
-    --border:      #24272e;
-    --border-2:    #31353d;
-    --text:        #e9ebee;
-    --text-2:      #a2a8b4;
-    /* Sengaja tidak segelap yang disangka untuk teks "tertier": ia mesti
-       mencapai 4.5:1 pada --surface-2 DAN --surface-3, bukan hanya pada
-       latar halaman paling gelap. Hierarki masih jelas berbanding
-       --text-2 dan --text. */
-    --text-3:      #8b919e;
-
-    /* Dalam mod gelap, latar bertona sudah gelap — jadi warna terang
-       itu sendiri yang menjadi tinta. -ink dipetakan ke bentuk terang. */
-    --accent:      #fb5c78;
-    --accent-h:    #ff7189;
-    --accent-fg:   #1a0208;
-    --accent-soft: #331820;
-    --accent-ink:  #ff8098;
-
-    --ok:          #2fd39b;
-    --ok-soft:     #102a20;
-    --ok-ink:      #4ce0ad;
-    --warn:        #f0b429;
-    --warn-soft:   #2e2513;
-    --warn-ink:    #f7c94f;
-    --bad:         #ff7a52;
-    --bad-soft:    #331b13;
-    --bad-ink:     #ff9673;
-
-    --shadow-sm: 0 1px 2px rgba(0,0,0,.35);
-    --shadow-md: 0 4px 14px -6px rgba(0,0,0,.55);
-    --shadow-lg: 0 16px 40px -16px rgba(0,0,0,.70);
-  }
 }
 
 * { box-sizing: border-box; }
@@ -201,9 +164,6 @@ p:last-child { margin-bottom: 0; }
   pointer-events: none;
   opacity: .035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-@media (prefers-color-scheme: dark) {
-  .grain { opacity: .05; }
 }
 
 .gate__inner, .gate__form { position: relative; z-index: 1; }
