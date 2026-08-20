@@ -165,7 +165,8 @@ p:last-child { margin-bottom: 0; }
   box-shadow: 0 14px 30px -10px rgba(255,61,104,.65);
 }
 .gate__logo {
-  animation: logoPop .7s cubic-bezier(.34,1.56,.64,1) both, logoFloat 4s ease-in-out 1s infinite;
+  border-radius: 14px;
+  animation: logoPop .6s cubic-bezier(.2,.8,.25,1) both, logoGlow 2.6s ease-in-out .8s infinite;
 }
 .gate__error {
   margin: 0 0 1.1rem;
@@ -696,7 +697,7 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
   width: auto;
   border-radius: 14px;
   box-shadow: var(--shadow-lg);
-  animation: logoPop .6s cubic-bezier(.34,1.56,.64,1) both, logoFloat 2.2s ease-in-out .6s infinite;
+  animation: logoPop .6s cubic-bezier(.2,.8,.25,1) both, logoGlow 2.2s ease-in-out .6s infinite;
 }
 .loadscreen__title {
   position: relative;
@@ -750,8 +751,11 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
   100% { transform: translate(-2%, 2%) scale(1); }
 }
 @keyframes formIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
-@keyframes logoPop { from { opacity: 0; transform: scale(.6) rotate(-8deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
-@keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes logoPop { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: scale(1); } }
+@keyframes logoGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,61,104,.25); }
+  50%      { box-shadow: 0 0 0 10px rgba(255,61,104,0); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
