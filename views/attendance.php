@@ -1,4 +1,4 @@
-<?php /** @var array $sessions @var array|null $session @var array $tally @var array $map @var array $roster */ ?>
+<?php /** @var array $sessions @var array|null $session @var array $tally @var array $map @var array $roster @var bool $canEdit */ ?>
 
 <header class="phead">
   <p class="eyebrow">Rekod</p>
@@ -40,15 +40,15 @@
     </div>
   </article>
 
-  <form method="post" action="index.php?r=attendance.save">
-    <?= csrf_field() ?>
-    <input type="hidden" name="session_id" value="<?= (int)$session['id'] ?>">
+  <?php $tag = $canEdit ? 'form' : 'div'; ?>
+  <<?= $tag ?><?= $canEdit ? ' method="post" action="index.php?r=attendance.save"' : '' ?>>
+    <?php if ($canEdit): ?><?= csrf_field() ?><input type="hidden" name="session_id" value="<?= (int)$session['id'] ?>"><?php endif; ?>
 
     <article class="card card--flush">
       <div class="tablewrap">
         <table class="sheet">
           <thead>
-            <tr><th>Pemain</th><th>Kategori</th><th>Status Semasa</th><th>Kaedah</th><th>Masa</th><th>Tandakan</th></tr>
+            <tr><th>Pemain</th><th>Kategori</th><th>Status Semasa</th><th>Kaedah</th><th>Masa</th><?php if ($canEdit): ?><th>Tandakan</th><?php endif; ?></tr>
           </thead>
           <tbody>
             <?php foreach ($roster as $p): $id = (int)$p['id']; $a = $map[$id] ?? null; $st = $a['status'] ?? 'belum'; ?>
@@ -61,6 +61,7 @@
                 <td><?= status_tag($st) ?></td>
                 <td><?= $a ? '<span class="code">' . e(strtoupper((string)$a['method'])) . '</span>' : '—' ?></td>
                 <td><span class="code"><?= $a ? e(substr((string)$a['marked_at'], 11, 5)) : '—' ?></span></td>
+                <?php if ($canEdit): ?>
                 <td>
                   <select name="status[<?= $id ?>]">
                     <?php foreach (STATUS_LABEL as $key => $label): ?>
@@ -68,6 +69,7 @@
                     <?php endforeach; ?>
                   </select>
                 </td>
+                <?php endif; ?>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -75,14 +77,17 @@
       </div>
     </article>
 
+    <?php if ($canEdit): ?>
     <div class="actionbar">
       <span class="actionbar__note">
         <?= $tally['belum'] ?> pemain masih belum ditanda untuk sesi ini.
       </span>
       <button class="btn btn--primary" type="submit">Simpan Kehadiran</button>
     </div>
-  </form>
+    <?php endif; ?>
+  </<?= $tag ?>>
 
+  <?php if ($canEdit): ?>
   <article class="card">
     <h3 class="card__title">Tindakan Pukal</h3>
     <div class="rowbtns">
@@ -106,5 +111,6 @@
       <a class="btn btn--gold" href="index.php?r=export">Muat Turun CSV</a>
     </div>
   </article>
+  <?php endif; ?>
 
 <?php endif; ?>

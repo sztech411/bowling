@@ -1,4 +1,4 @@
-<?php /** @var array|null $hero @var array|null $current @var array|null $tally @var array $roster @var array $trend */ ?>
+<?php /** @var array|null $hero @var array|null $current @var array|null $tally @var array $roster @var array $trend @var bool $canEdit */ ?>
 
 <header class="phead">
   <p class="eyebrow">Ringkasan</p>
@@ -57,6 +57,7 @@
         <?php endif; ?>
       </dl>
 
+      <?php if ($canEdit): ?>
       <div class="hero__actions">
         <?php if ($hero['status'] === 'aktif'): ?>
           <a class="btn btn--primary" href="index.php?r=checkin">Buka QR Check-in</a>
@@ -72,6 +73,11 @@
           <a class="btn btn--ghost" href="index.php?r=sessions">Urus Sesi</a>
         <?php endif; ?>
       </div>
+      <?php elseif ($hero['status'] === 'aktif'): ?>
+      <div class="hero__actions">
+        <a class="btn btn--ghost" href="index.php?r=attendance&s=<?= (int)$hero['id'] ?>">Lihat Kehadiran</a>
+      </div>
+      <?php endif; ?>
     <?php endif; ?>
   </article>
 

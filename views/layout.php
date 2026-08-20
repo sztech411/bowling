@@ -13,6 +13,7 @@ $navItems = [
     'scores'     => ['Skor & Prestasi', 'Skor', '◈'],
     'reports'    => ['Laporan', 'Laporan', '◫'],
 ];
+$navItems = array_filter($navItems, fn($k) => role_can_view((string)($user['role'] ?? ''), $k), ARRAY_FILTER_USE_KEY);
 ?>
 <!doctype html>
 <html lang="ms">

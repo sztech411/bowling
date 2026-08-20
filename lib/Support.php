@@ -20,6 +20,31 @@ const STATUS_CLASS = [
 const BULAN = ['Jan', 'Feb', 'Mac', 'Apr', 'Mei', 'Jun', 'Jul', 'Ogo', 'Sep', 'Okt', 'Nov', 'Dis'];
 const HARI  = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
 
+/** Kawalan akses ikut peranan. Admin & Jurulatih ada akses penuh; Pemain hanya lihat. */
+const ROLE_PAGES = [
+    'Admin'     => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports'],
+    'Jurulatih' => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports'],
+    'Pemain'    => ['dashboard', 'attendance', 'scores'],
+];
+
+/** Tindakan POST yang disekat daripada peranan Pemain (lihat sahaja, tiada suntingan). */
+const PEMAIN_DENIED_ACTIONS = [
+    'player.save', 'player.delete',
+    'session.save', 'session.status', 'session.delete',
+    'attendance.save', 'attendance.bulk', 'attendance.checkin',
+    'score.save', 'data.reset',
+];
+
+function role_can_view(string $role, string $route): bool
+{
+    return in_array($route, ROLE_PAGES[$role] ?? ['dashboard'], true);
+}
+
+function role_can_edit(string $role): bool
+{
+    return $role !== 'Pemain';
+}
+
 function e(?string $s): string
 {
     return htmlspecialchars((string)$s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');

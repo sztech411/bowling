@@ -82,6 +82,11 @@ if ($route === 'login' || !$user) {
 if ($isPost) {
     csrf_check();
 
+    if (($user['role'] ?? '') === 'Pemain' && in_array($route, PEMAIN_DENIED_ACTIONS, true)) {
+        flash('Anda tidak mempunyai kebenaran untuk tindakan ini.', 'bad');
+        redirect('dashboard');
+    }
+
     try {
         switch ($route) {
 
@@ -232,6 +237,10 @@ if ($isPost) {
 // ══ Eksport CSV ══
 
 if ($route === 'export') {
+    if (($user['role'] ?? '') === 'Pemain') {
+        flash('Anda tidak mempunyai kebenaran untuk tindakan ini.', 'bad');
+        redirect('dashboard');
+    }
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename="kehadiran-piko-taz-' . date('Ymd-His') . '.csv"');
     $out = fopen('php://output', 'w');
@@ -250,6 +259,11 @@ $pages = ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores',
 if (!in_array($route, $pages, true)) {
     $route = 'dashboard';
 }
+if (!role_can_view((string)($user['role'] ?? ''), $route)) {
+    flash('Anda tidak mempunyai akses ke halaman itu.', 'bad');
+    redirect('dashboard');
+}
+$canEdit = role_can_edit((string)($user['role'] ?? ''));
 
 // Data yang diperlukan oleh setiap paparan.
 switch ($route) {

@@ -1,5 +1,5 @@
 <?php
-/** @var array $sessions @var array|null $session @var array $roster @var array $scores @var float|null $sessionAvg */
+/** @var array $sessions @var array|null $session @var array $roster @var array $scores @var float|null $sessionAvg @var bool $canEdit */
 $maxGames = Repo::MAX_GAMES_PER_SESSION;
 ?>
 
@@ -53,9 +53,9 @@ $maxGames = Repo::MAX_GAMES_PER_SESSION;
     </div>
   </article>
 
-  <form method="post" action="index.php?r=score.save">
-    <?= csrf_field() ?>
-    <input type="hidden" name="session_id" value="<?= (int)$session['id'] ?>">
+  <?php $tag = $canEdit ? 'form' : 'div'; ?>
+  <<?= $tag ?><?= $canEdit ? ' method="post" action="index.php?r=score.save"' : '' ?>>
+    <?php if ($canEdit): ?><?= csrf_field() ?><input type="hidden" name="session_id" value="<?= (int)$session['id'] ?>"><?php endif; ?>
 
     <article class="card card--flush">
       <div class="tablewrap">
@@ -81,10 +81,14 @@ $maxGames = Repo::MAX_GAMES_PER_SESSION;
                 <td><?= e($p['category']) ?></td>
                 <?php for ($g = 1; $g <= $maxGames; $g++): ?>
                   <td>
+                    <?php if ($canEdit): ?>
                     <input type="number" min="0" max="<?= Repo::MAX_PINS ?>" inputmode="numeric"
                            name="pins[<?= $id ?>][<?= $g ?>]"
                            value="<?= isset($byGame[$g]) ? (int)$byGame[$g]['pins'] : '' ?>"
                            placeholder="—" class="scoreinput">
+                    <?php else: ?>
+                      <?= isset($byGame[$g]) ? (int)$byGame[$g]['pins'] : '—' ?>
+                    <?php endif; ?>
                   </td>
                 <?php endfor; ?>
                 <td class="num"><?= $n ? $sum : '—' ?></td>
@@ -96,10 +100,12 @@ $maxGames = Repo::MAX_GAMES_PER_SESSION;
       </div>
     </article>
 
+    <?php if ($canEdit): ?>
     <div class="actionbar">
       <span class="actionbar__note">Kosongkan medan untuk membuang rekod game tersebut. Skor sah: 0–<?= Repo::MAX_PINS ?>.</span>
       <button class="btn btn--primary" type="submit">Simpan Skor</button>
     </div>
-  </form>
+    <?php endif; ?>
+  </<?= $tag ?>>
 
 <?php endif; ?>
