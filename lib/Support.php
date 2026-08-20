@@ -22,9 +22,9 @@ const HARI  = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
 
 /** Kawalan akses ikut peranan. Admin & Jurulatih ada akses penuh; Pemain hanya lihat. */
 const ROLE_PAGES = [
-    'Admin'     => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports', 'settings'],
-    'Jurulatih' => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports', 'settings'],
-    'Pemain'    => ['dashboard', 'attendance', 'scores'],
+    'Admin'     => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports', 'settings', 'profile'],
+    'Jurulatih' => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports', 'settings', 'profile'],
+    'Pemain'    => ['dashboard', 'attendance', 'scores', 'profile'],
 ];
 
 /** Tindakan POST yang disekat daripada peranan Pemain (lihat sahaja, tiada suntingan). */

@@ -282,7 +282,8 @@ input.mono { font-family: var(--mono); letter-spacing: .3em; font-size: 18px; te
 }
 
 .topbar__user { display: flex; align-items: center; gap: .85rem; flex: none; }
-.who { display: flex; flex-direction: column; min-width: 0; }
+.who { display: flex; flex-direction: column; min-width: 0; text-decoration: none; }
+.who:hover .who__name { color: var(--oxblood); }
 .who__name { font-weight: 600; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 14ch; }
 .who__role { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
 

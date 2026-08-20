@@ -209,6 +209,17 @@ if ($isPost) {
                 flash($n . ' keputusan game disimpan.');
                 redirect('scores');
 
+            case 'profile.save':
+                $newPass = post_str('new_password');
+                $confirm = post_str('confirm_password');
+                if ($newPass !== '' && $newPass !== $confirm) {
+                    throw new RuntimeException('Pengesahan kata laluan tidak sepadan.');
+                }
+                $updated = $repo->updateProfile((int)$user['id'], post_str('name'), post_str('username'), $newPass);
+                $_SESSION['user'] = $updated;
+                flash('Profil dikemas kini.');
+                redirect('profile');
+
             case 'settings.save':
                 $coaches = array_values(array_unique(array_filter(array_map('trim', explode("\n", (string)($_POST['coaches'] ?? ''))))));
                 $venues = array_values(array_unique(array_filter(array_map('trim', explode("\n", (string)($_POST['venues'] ?? ''))))));
@@ -262,7 +273,7 @@ if ($route === 'export') {
 
 // ══ Paparan (GET) ══
 
-$pages = ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports', 'settings'];
+$pages = ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports', 'settings', 'profile'];
 if (!in_array($route, $pages, true)) {
     $route = 'dashboard';
 }
@@ -313,6 +324,9 @@ switch ($route) {
 
     case 'settings':
         $settings = $repo->settings();
+        break;
+
+    case 'profile':
         break;
 
     case 'checkin':

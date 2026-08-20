@@ -47,10 +47,10 @@ $navItems = array_filter($navItems, fn($k) => role_can_view((string)($user['role
     </nav>
 
     <div class="topbar__user">
-      <div class="who">
+      <a class="who" href="index.php?r=profile" title="Sunting profil">
         <span class="who__name"><?= e($user['name']) ?></span>
         <span class="who__role"><?= e($user['role']) ?></span>
-      </div>
+      </a>
       <form method="post" action="index.php?r=logout">
         <?= csrf_field() ?>
         <button class="btn btn--ghost btn--sm" type="submit">Keluar</button>

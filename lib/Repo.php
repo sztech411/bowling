@@ -40,6 +40,42 @@ final class Repo
         return null;
     }
 
+    /**
+     * Kemas kini profil pengguna sendiri (nama, ID pengguna, kata laluan
+     * pilihan). Kata laluan baharu dihantar sebagai teks biasa dan
+     * di-hash di sini; kosongkan untuk kekalkan kata laluan sedia ada.
+     */
+    public function updateProfile(int $id, string $name, string $username, string $newPassword = ''): array
+    {
+        if ($name === '') {
+            throw new RuntimeException('Nama diperlukan.');
+        }
+        if ($username === '') {
+            throw new RuntimeException('ID pengguna diperlukan.');
+        }
+        foreach ($this->db->table('users') as $u) {
+            if ((int)$u['id'] !== $id && strcasecmp($u['username'], $username) === 0) {
+                throw new RuntimeException('ID pengguna itu sudah digunakan.');
+            }
+        }
+
+        return $this->db->mutate(function (array &$data) use ($id, $name, $username, $newPassword) {
+            foreach ($data['users'] as $i => $u) {
+                if ((int)$u['id'] === $id) {
+                    $data['users'][$i]['name'] = $name;
+                    $data['users'][$i]['username'] = $username;
+                    if ($newPassword !== '') {
+                        $data['users'][$i]['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+                    }
+                    $safe = $data['users'][$i];
+                    unset($safe['password']);
+                    return $safe;
+                }
+            }
+            throw new RuntimeException('Pengguna tidak dijumpai.');
+        });
+    }
+
     // ── Pemain ──────────────────────────────────────────────
 
     /** @return array<int, array> */
