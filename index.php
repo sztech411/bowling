@@ -69,11 +69,19 @@ if ($route === 'login' || !$user) {
             $_SESSION['user'] = $found;
             session_regenerate_id(true);
             flash('Selamat kembali, ' . $found['name'] . '.');
-            redirect('dashboard');
+            redirect('loading');
         }
         $error = 'ID pengguna atau kata laluan tidak sah.';
     }
     require __DIR__ . '/views/login.php';
+    exit;
+}
+
+// ══ Skrin loading selepas log masuk ══
+
+if ($route === 'loading') {
+    $loadingMs = (int)$repo->settings()['loading_ms'];
+    require __DIR__ . '/views/loading.php';
     exit;
 }
 
@@ -146,13 +154,11 @@ if ($isPost) {
 
             case 'attendance.save':
                 $sid = post_int('session_id');
-                $marks = (array)($_POST['status'] ?? []);
+                $present = (array)($_POST['present'] ?? []);
                 $n = 0;
-                foreach ($marks as $pid => $status) {
-                    if (!array_key_exists((string)$status, STATUS_LABEL)) {
-                        continue;
-                    }
-                    $repo->mark($sid, (int)$pid, (string)$status, 'manual');
+                foreach ($present as $pid => $val) {
+                    $status = ((string)$val === '1') ? 'hadir' : 'tidak_hadir';
+                    $repo->mark($sid, (int)$pid, $status, 'manual');
                     $n++;
                 }
                 flash($n . ' rekod kehadiran disimpan.');
@@ -223,7 +229,8 @@ if ($isPost) {
             case 'settings.save':
                 $coaches = array_values(array_unique(array_filter(array_map('trim', explode("\n", (string)($_POST['coaches'] ?? ''))))));
                 $venues = array_values(array_unique(array_filter(array_map('trim', explode("\n", (string)($_POST['venues'] ?? ''))))));
-                $repo->saveSettings($coaches, $venues, post_str('default_coach'), post_str('default_venue'));
+                $loadingMs = (int)round(((float)post_str('loading_seconds', '1.5')) * 1000);
+                $repo->saveSettings($coaches, $venues, post_str('default_coach'), post_str('default_venue'), $loadingMs);
                 flash('Tetapan lalai dikemas kini.');
                 redirect('settings');
 

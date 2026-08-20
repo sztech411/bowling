@@ -3,7 +3,7 @@
 <header class="phead">
   <p class="eyebrow">Rekod</p>
   <h1>Kehadiran Training</h1>
-  <p class="phead__sub">Tandakan status setiap pemain, kemudian simpan. Rekod QR dipaparkan bersama waktu check-in.</p>
+  <p class="phead__sub">Tick pemain yang hadir, kemudian simpan. Rekod QR dipaparkan bersama waktu check-in.</p>
 </header>
 
 <?php if (!$session): ?>
@@ -48,7 +48,7 @@
       <div class="tablewrap">
         <table class="sheet">
           <thead>
-            <tr><th>Pemain</th><th>Kategori</th><th>Status Semasa</th><th>Kaedah</th><th>Masa</th><?php if ($canEdit): ?><th>Tandakan</th><?php endif; ?></tr>
+            <tr><th>Pemain</th><th>Kategori</th><th>Status Semasa</th><th>Kaedah</th><th>Masa</th><?php if ($canEdit): ?><th class="num">Hadir</th><?php endif; ?></tr>
           </thead>
           <tbody>
             <?php foreach ($roster as $p): $id = (int)$p['id']; $a = $map[$id] ?? null; $st = $a['status'] ?? 'belum'; ?>
@@ -62,12 +62,10 @@
                 <td><?= $a ? '<span class="code">' . e(strtoupper((string)$a['method'])) . '</span>' : '—' ?></td>
                 <td><span class="code"><?= $a ? e(substr((string)$a['marked_at'], 11, 5)) : '—' ?></span></td>
                 <?php if ($canEdit): ?>
-                <td>
-                  <select name="status[<?= $id ?>]">
-                    <?php foreach (STATUS_LABEL as $key => $label): ?>
-                      <option value="<?= e($key) ?>"<?= $key === $st ? ' selected' : '' ?>><?= e($label) ?></option>
-                    <?php endforeach; ?>
-                  </select>
+                <td class="num">
+                  <input type="hidden" name="present[<?= $id ?>]" value="0">
+                  <input type="checkbox" class="tick" name="present[<?= $id ?>]" value="1"
+                         <?= in_array($st, ['hadir', 'lewat'], true) ? 'checked' : '' ?>>
                 </td>
                 <?php endif; ?>
               </tr>

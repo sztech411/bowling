@@ -213,6 +213,7 @@ final class Db
                 'venues' => ['Lite Superbowl'],
                 'default_coach' => 'Coach Rizal',
                 'default_venue' => 'Lite Superbowl',
+                'loading_ms' => 1500,
             ],
         ];
     }

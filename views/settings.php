@@ -40,6 +40,12 @@
       </select>
     </label>
 
+    <label class="field">
+      <span class="field__label">Tempoh Skrin Loading Selepas Log Masuk (saat)</span>
+      <input name="loading_seconds" type="number" min="0.5" max="6" step="0.1"
+             value="<?= e((string)round($settings['loading_ms'] / 1000, 1)) ?>">
+    </label>
+
     <p class="phead__sub" style="margin:0 0 -.4rem">Nota: jurulatih/lokasi lalai akan ditambah automatik ke senarai di atas jika belum wujud.</p>
 
     <div class="formgrid__actions">

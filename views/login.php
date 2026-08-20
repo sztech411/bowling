@@ -37,24 +37,15 @@
 
       <label class="field">
         <span class="field__label">ID Pengguna</span>
-        <input name="username" required autofocus value="<?= e($_POST['username'] ?? 'admin') ?>">
+        <input name="username" required autofocus value="<?= e($_POST['username'] ?? '') ?>">
       </label>
 
       <label class="field">
         <span class="field__label">Kata Laluan</span>
-        <input name="password" type="password" required value="admin123">
+        <input name="password" type="password" required>
       </label>
 
       <button class="btn btn--primary btn--block" type="submit">Log Masuk</button>
-
-      <div class="gate__hint">
-        <span>Akaun demo</span>
-        <table class="demotable">
-          <tr><td class="code">admin</td><td class="code">admin123</td><td>Admin</td></tr>
-          <tr><td class="code">coach</td><td class="code">coach123</td><td>Jurulatih</td></tr>
-          <tr><td class="code">pemain</td><td class="code">pemain123</td><td>Pemain</td></tr>
-        </table>
-      </div>
     </form>
   </div>
 </div>

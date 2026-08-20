@@ -577,6 +577,9 @@ final class Repo
 
     // ── Tetapan (senarai jurulatih/lokasi & lalai) ─────────────
 
+    public const LOADING_MS_MIN = 500;
+    public const LOADING_MS_MAX = 6000;
+
     public function settings(): array
     {
         $s = $this->db->all()['settings'] ?? [];
@@ -585,12 +588,14 @@ final class Repo
             'venues' => [],
             'default_coach' => '',
             'default_venue' => '',
+            'loading_ms' => 1500,
         ], $s);
     }
 
-    public function saveSettings(array $coaches, array $venues, string $defaultCoach, string $defaultVenue): array
+    public function saveSettings(array $coaches, array $venues, string $defaultCoach, string $defaultVenue, int $loadingMs): array
     {
-        return $this->db->mutate(function (array &$data) use ($coaches, $venues, $defaultCoach, $defaultVenue) {
+        $loadingMs = max(self::LOADING_MS_MIN, min(self::LOADING_MS_MAX, $loadingMs));
+        return $this->db->mutate(function (array &$data) use ($coaches, $venues, $defaultCoach, $defaultVenue, $loadingMs) {
             if ($defaultCoach !== '' && !in_array($defaultCoach, $coaches, true)) {
                 $coaches[] = $defaultCoach;
             }
@@ -602,6 +607,7 @@ final class Repo
                 'venues' => $venues,
                 'default_coach' => $defaultCoach,
                 'default_venue' => $defaultVenue,
+                'loading_ms' => $loadingMs,
             ];
             return $data['settings'];
         });
