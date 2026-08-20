@@ -16,10 +16,18 @@
 
 <div class="loadscreen">
   <div class="loadscreen__glow" aria-hidden="true"></div>
-  <img class="loadscreen__logo" src="<?= asset_url('assets/logo-bowling.jpeg') ?>" alt="PIKO TAZ">
-  <p class="loadscreen__title">PIKO<em>TAZ</em></p>
-  <div class="loadscreen__bar"><span></span></div>
-  <p class="loadscreen__hint">Menyediakan papan pemuka…</p>
+
+  <div class="loadscreen__stage">
+    <div class="loadscreen__badge">
+      <span class="loadscreen__ring" aria-hidden="true"></span>
+      <img class="loadscreen__logo" src="<?= asset_url('assets/logo-bowling.jpeg') ?>" alt="PIKO TAZ">
+    </div>
+
+    <p class="loadscreen__title">PIKO<em>TAZ</em></p>
+    <p class="loadscreen__hint">Menyediakan papan pemuka…</p>
+
+    <div class="loadscreen__bar" role="progressbar" aria-label="Memuatkan"><span></span></div>
+  </div>
 </div>
 
 <script>

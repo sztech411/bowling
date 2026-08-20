@@ -652,8 +652,6 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
   min-height: 100vh;
   display: grid;
   place-items: center;
-  justify-items: center;
-  gap: .3rem;
   position: relative;
   overflow: hidden;
   background: linear-gradient(160deg, var(--paper) 0%, var(--paper-warm) 100%);
@@ -662,33 +660,57 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
 }
 .loadscreen__glow {
   position: absolute;
-  inset: -25%;
+  inset: -20%;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(32% 32% at 20% 25%, rgba(255,61,104,.4) 0%, transparent 70%),
-    radial-gradient(28% 28% at 80% 20%, rgba(255,195,0,.4) 0%, transparent 70%),
-    radial-gradient(34% 34% at 80% 85%, rgba(18,196,139,.35) 0%, transparent 70%);
-  filter: blur(70px);
-  opacity: .65;
-  animation: gateDrift 16s ease-in-out infinite alternate;
+    radial-gradient(30% 30% at 22% 24%, rgba(255,61,104,.22) 0%, transparent 70%),
+    radial-gradient(26% 26% at 78% 22%, rgba(255,195,0,.20) 0%, transparent 70%),
+    radial-gradient(30% 30% at 76% 80%, rgba(18,196,139,.18) 0%, transparent 70%);
+  filter: blur(80px);
+}
+
+/* Susunan menegak yang konsisten — jarak dikawal oleh gap, bukan margin. */
+.loadscreen__stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+/* Cincin berputar mengelilingi logo; logo sendiri kekal statik. */
+.loadscreen__badge {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  display: grid;
+  place-items: center;
+}
+.loadscreen__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid var(--line);
+  border-top-color: var(--oxblood);
+  border-right-color: var(--gold);
+  animation: loadSpin 1s linear infinite;
 }
 .loadscreen__logo {
-  position: relative;
-  z-index: 1;
-  height: 72px;
-  width: auto;
-  border-radius: 14px;
-  box-shadow: var(--shadow-lg);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--shadow-md);
 }
+
 .loadscreen__title {
-  position: relative;
-  z-index: 1;
   font-family: var(--display);
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   letter-spacing: -.02em;
-  margin: 1rem 0 0;
+  margin: 0;
   color: var(--ink);
 }
 .loadscreen__title em {
@@ -698,15 +720,18 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
   background-clip: text;
   color: transparent;
 }
+.loadscreen__hint {
+  font-size: 12.5px;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+  margin: -.9rem 0 0;
+}
 .loadscreen__bar {
-  position: relative;
-  z-index: 1;
-  width: min(220px, 70vw);
-  height: 6px;
+  width: min(240px, 72vw);
+  height: 5px;
   border-radius: 999px;
-  background: var(--line);
+  background: var(--line-soft);
   overflow: hidden;
-  margin-top: 1.1rem;
 }
 .loadscreen__bar span {
   display: block;
@@ -715,23 +740,11 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
   border-radius: 999px;
   background: linear-gradient(90deg, var(--oxblood), var(--gold));
   transform: translateX(-100%);
-  animation: loadFill 1.5s ease-in-out forwards;
-}
-.loadscreen__hint {
-  position: relative;
-  z-index: 1;
-  font-size: 12.5px;
-  color: var(--ink-faint);
-  margin: .9rem 0 0;
+  animation: loadFill 1.5s cubic-bezier(.4,0,.2,1) forwards;
 }
 
 @keyframes loadFill { to { transform: translateX(0); } }
-
-@keyframes gateDrift {
-  0%   { transform: translate(0,0) scale(1); }
-  50%  { transform: translate(2%, -3%) scale(1.06); }
-  100% { transform: translate(-2%, 2%) scale(1); }
-}
+@keyframes loadSpin { to { transform: rotate(360deg); } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
