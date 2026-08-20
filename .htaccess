@@ -1,0 +1,11 @@
+# Jenis MIME betul untuk manifest PWA (sesetengah versi Apache tidak mengenalinya).
+<IfModule mod_mime.c>
+    AddType application/manifest+json .webmanifest
+</IfModule>
+
+# sw.js tidak boleh dicache oleh pelayar/proksi — jika tidak, kemas kini tidak sampai.
+<IfModule mod_headers.c>
+    <FilesMatch "^sw\.js$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>

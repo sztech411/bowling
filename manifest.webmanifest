@@ -1,0 +1,41 @@
+{
+  "name": "PIKO TAZ — Kehadiran Latihan Boling",
+  "short_name": "PIKO TAZ",
+  "description": "Sistem kehadiran, sesi latihan, dan skor pemain kelab boling PIKO TAZ.",
+  "start_url": "index.php?r=dashboard&source=pwa",
+  "scope": "./",
+  "id": "/bowling/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "portrait-primary",
+  "background_color": "#fbfaf8",
+  "theme_color": "#8c2320",
+  "lang": "ms",
+  "dir": "ltr",
+  "categories": ["sports", "productivity"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "QR Check-in",
+      "short_name": "Check-in",
+      "url": "index.php?r=checkin&source=pwa",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Kehadiran",
+      "short_name": "Kehadiran",
+      "url": "index.php?r=attendance&source=pwa",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Skor & Prestasi",
+      "short_name": "Skor",
+      "url": "index.php?r=scores&source=pwa",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

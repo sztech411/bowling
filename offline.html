@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Luar Talian · PIKO TAZ Boling</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="gate">
+  <div class="gate__lanes" aria-hidden="true"></div>
+  <div class="gate__inner gate__inner--single">
+    <div class="gate__brand">
+      <p class="eyebrow">Tiada Sambungan</p>
+      <h1 class="gate__title gate__title--sm">Anda sedang luar talian</h1>
+      <p class="gate__blurb">
+        PIKO TAZ memerlukan sambungan Internet untuk memuatkan data kehadiran dan skor
+        terkini. Sambungkan semula ke rangkaian, kemudian cuba lagi.
+      </p>
+    </div>
+    <div class="gate__form">
+      <button class="btn btn--primary btn--block" onclick="location.reload()">Cuba Lagi</button>
+      <p class="gate__hint" style="margin-top:1.1rem;text-align:center">
+        Halaman ini dipaparkan oleh service worker semasa anda luar talian.
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

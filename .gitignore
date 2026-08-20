@@ -1,0 +1,6 @@
+config/firebase-service-account.json
+data/.firestore-token-cache.json
+data/.installed
+cjfirejson.txt
+_legacy-prototype.html.bak
+page.html

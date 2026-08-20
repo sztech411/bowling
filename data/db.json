@@ -1,0 +1,699 @@
+{
+    "meta": {
+        "app": "PIKO TAZ Bowling",
+        "version": 2,
+        "created_at": "2026-08-20T01:31:27+00:00"
+    },
+    "users": [
+        {
+            "id": 1,
+            "username": "admin",
+            "password": "admin123",
+            "name": "Shaharizuan",
+            "role": "Admin"
+        },
+        {
+            "id": 2,
+            "username": "coach",
+            "password": "coach123",
+            "name": "Coach Rizal",
+            "role": "Jurulatih"
+        },
+        {
+            "id": 3,
+            "username": "pemain",
+            "password": "pemain123",
+            "name": "Afizan Amer",
+            "role": "Pemain",
+            "player_id": 1
+        }
+    ],
+    "players": [
+        {
+            "id": 1,
+            "no_ahli": "MSN-1001",
+            "name": "Afizan Amer",
+            "category": "Senior",
+            "phone": "013-2200481",
+            "average": 186,
+            "active": true,
+            "joined_at": "2026-07-21"
+        },
+        {
+            "id": 2,
+            "no_ahli": "MSN-1002",
+            "name": "Muhammad Hakim",
+            "category": "Senior",
+            "phone": "019-4471203",
+            "average": 178,
+            "active": true,
+            "joined_at": "2026-07-04"
+        },
+        {
+            "id": 3,
+            "no_ahli": "MSN-1003",
+            "name": "Danish Irfan",
+            "category": "Junior",
+            "phone": "011-3390118",
+            "average": 152,
+            "active": true,
+            "joined_at": "2026-06-17"
+        },
+        {
+            "id": 4,
+            "no_ahli": "MSN-1004",
+            "name": "Nursyazwani Aida",
+            "category": "Ladies",
+            "phone": "012-6628870",
+            "average": 164,
+            "active": true,
+            "joined_at": "2026-05-31"
+        },
+        {
+            "id": 5,
+            "no_ahli": "MSN-1005",
+            "name": "Izzat Danial",
+            "category": "Senior",
+            "phone": "017-8812440",
+            "average": 171,
+            "active": true,
+            "joined_at": "2026-05-14"
+        },
+        {
+            "id": 6,
+            "no_ahli": "MSN-1006",
+            "name": "Muhammad Adam",
+            "category": "Junior",
+            "phone": "014-2298017",
+            "average": 148,
+            "active": true,
+            "joined_at": "2026-04-27"
+        },
+        {
+            "id": 7,
+            "no_ahli": "MSN-1007",
+            "name": "Farah Nabilah",
+            "category": "Ladies",
+            "phone": "018-7734029",
+            "average": 159,
+            "active": true,
+            "joined_at": "2026-04-10"
+        },
+        {
+            "id": 8,
+            "no_ahli": "MSN-1008",
+            "name": "Zulhilmi Rashid",
+            "category": "Youth",
+            "phone": "016-5540912",
+            "average": 143,
+            "active": true,
+            "joined_at": "2026-03-24"
+        }
+    ],
+    "sessions": [
+        {
+            "id": 1,
+            "title": "Latihan Teknik & Konsistensi",
+            "date": "2026-08-13",
+            "start": "20:00",
+            "end": "22:00",
+            "venue": "Lite Superbowl",
+            "coach": "Coach Rizal",
+            "note": "Fokus pada spare shooting dan release yang konsisten.",
+            "status": "selesai",
+            "pin": "480219"
+        },
+        {
+            "id": 2,
+            "title": "Latihan Kelajuan & Ketepatan",
+            "date": "2026-08-17",
+            "start": "20:00",
+            "end": "22:00",
+            "venue": "Lite Superbowl",
+            "coach": "Coach Rizal",
+            "note": "Simulasi perlawanan 3 game.",
+            "status": "selesai",
+            "pin": "733641"
+        },
+        {
+            "id": 3,
+            "title": "Latihan Persiapan Kejohanan",
+            "date": "2026-08-20",
+            "start": "20:00",
+            "end": "22:00",
+            "venue": "Lite Superbowl",
+            "coach": "Coach Rizal",
+            "note": "Sesi penuh: warm-up, teknik, dan 4 game penilaian.",
+            "status": "aktif",
+            "pin": "215608"
+        }
+    ],
+    "attendance": [
+        {
+            "id": 1,
+            "session_id": 1,
+            "player_id": 1,
+            "status": "hadir",
+            "method": "qr",
+            "marked_at": "2026-08-13 19:00:00"
+        },
+        {
+            "id": 2,
+            "session_id": 1,
+            "player_id": 2,
+            "status": "hadir",
+            "method": "manual",
+            "marked_at": "2026-08-13 19:07:00"
+        },
+        {
+            "id": 3,
+            "session_id": 1,
+            "player_id": 3,
+            "status": "lewat",
+            "method": "qr",
+            "marked_at": "2026-08-13 19:14:00"
+        },
+        {
+            "id": 4,
+            "session_id": 1,
+            "player_id": 4,
+            "status": "hadir",
+            "method": "manual",
+            "marked_at": "2026-08-13 19:21:00"
+        },
+        {
+            "id": 5,
+            "session_id": 1,
+            "player_id": 5,
+            "status": "hadir",
+            "method": "qr",
+            "marked_at": "2026-08-13 20:28:00"
+        },
+        {
+            "id": 6,
+            "session_id": 1,
+            "player_id": 6,
+            "status": "tidak_hadir",
+            "method": "manual",
+            "marked_at": "2026-08-13 20:35:00"
+        },
+        {
+            "id": 7,
+            "session_id": 1,
+            "player_id": 7,
+            "status": "hadir",
+            "method": "qr",
+            "marked_at": "2026-08-13 20:42:00"
+        },
+        {
+            "id": 8,
+            "session_id": 1,
+            "player_id": 8,
+            "status": "hadir",
+            "method": "manual",
+            "marked_at": "2026-08-13 20:49:00"
+        },
+        {
+            "id": 9,
+            "session_id": 2,
+            "player_id": 1,
+            "status": "hadir",
+            "method": "qr",
+            "marked_at": "2026-08-17 19:00:00"
+        },
+        {
+            "id": 10,
+            "session_id": 2,
+            "player_id": 2,
+            "status": "lewat",
+            "method": "manual",
+            "marked_at": "2026-08-17 19:07:00"
+        },
+        {
+            "id": 11,
+            "session_id": 2,
+            "player_id": 3,
+            "status": "hadir",
+            "method": "qr",
+            "marked_at": "2026-08-17 19:14:00"
+        },
+        {
+            "id": 12,
+            "session_id": 2,
+            "player_id": 4,
+            "status": "hadir",
+            "method": "manual",
+            "marked_at": "2026-08-17 19:21:00"
+        },
+        {
+            "id": 13,
+            "session_id": 2,
+            "player_id": 5,
+            "status": "tidak_hadir",
+            "method": "manual",
+            "marked_at": "2026-08-17 20:28:00"
+        },
+        {
+            "id": 14,
+            "session_id": 2,
+            "player_id": 6,
+            "status": "hadir",
+            "method": "manual",
+            "marked_at": "2026-08-17 20:35:00"
+        },
+        {
+            "id": 15,
+            "session_id": 2,
+            "player_id": 7,
+            "status": "hadir",
+            "method": "qr",
+            "marked_at": "2026-08-17 20:42:00"
+        },
+        {
+            "id": 16,
+            "session_id": 2,
+            "player_id": 8,
+            "status": "lewat",
+            "method": "manual",
+            "marked_at": "2026-08-17 20:49:00"
+        },
+        {
+            "id": 17,
+            "session_id": 3,
+            "player_id": 1,
+            "status": "hadir",
+            "method": "qr",
+            "marked_at": "2026-08-20 19:00:00"
+        },
+        {
+            "id": 18,
+            "session_id": 3,
+            "player_id": 2,
+            "status": "hadir",
+            "method": "manual",
+            "marked_at": "2026-08-20 19:07:00"
+        },
+        {
+            "id": 19,
+            "session_id": 3,
+            "player_id": 3,
+            "status": "lewat",
+            "method": "qr",
+            "marked_at": "2026-08-20 19:14:00"
+        },
+        {
+            "id": 20,
+            "session_id": 3,
+            "player_id": 4,
+            "status": "hadir",
+            "method": "manual",
+            "marked_at": "2026-08-20 19:21:00"
+        },
+        {
+            "id": 21,
+            "session_id": 3,
+            "player_id": 6,
+            "status": "hadir",
+            "method": "manual",
+            "marked_at": "2026-08-20 20:35:00"
+        }
+    ],
+    "scores": [
+        {
+            "id": 1,
+            "session_id": 1,
+            "player_id": 1,
+            "game_no": 1,
+            "pins": 191,
+            "recorded_at": "2026-08-13 21:03:00"
+        },
+        {
+            "id": 2,
+            "session_id": 1,
+            "player_id": 1,
+            "game_no": 2,
+            "pins": 196,
+            "recorded_at": "2026-08-13 22:03:00"
+        },
+        {
+            "id": 3,
+            "session_id": 1,
+            "player_id": 1,
+            "game_no": 3,
+            "pins": 201,
+            "recorded_at": "2026-08-13 23:03:00"
+        },
+        {
+            "id": 4,
+            "session_id": 1,
+            "player_id": 2,
+            "game_no": 1,
+            "pins": 196,
+            "recorded_at": "2026-08-13 21:06:00"
+        },
+        {
+            "id": 5,
+            "session_id": 1,
+            "player_id": 2,
+            "game_no": 2,
+            "pins": 160,
+            "recorded_at": "2026-08-13 22:06:00"
+        },
+        {
+            "id": 6,
+            "session_id": 1,
+            "player_id": 2,
+            "game_no": 3,
+            "pins": 165,
+            "recorded_at": "2026-08-13 23:06:00"
+        },
+        {
+            "id": 7,
+            "session_id": 1,
+            "player_id": 3,
+            "game_no": 1,
+            "pins": 142,
+            "recorded_at": "2026-08-13 21:09:00"
+        },
+        {
+            "id": 8,
+            "session_id": 1,
+            "player_id": 3,
+            "game_no": 2,
+            "pins": 147,
+            "recorded_at": "2026-08-13 22:09:00"
+        },
+        {
+            "id": 9,
+            "session_id": 1,
+            "player_id": 3,
+            "game_no": 3,
+            "pins": 152,
+            "recorded_at": "2026-08-13 23:09:00"
+        },
+        {
+            "id": 10,
+            "session_id": 1,
+            "player_id": 4,
+            "game_no": 1,
+            "pins": 167,
+            "recorded_at": "2026-08-13 21:12:00"
+        },
+        {
+            "id": 11,
+            "session_id": 1,
+            "player_id": 4,
+            "game_no": 2,
+            "pins": 172,
+            "recorded_at": "2026-08-13 22:12:00"
+        },
+        {
+            "id": 12,
+            "session_id": 1,
+            "player_id": 4,
+            "game_no": 3,
+            "pins": 177,
+            "recorded_at": "2026-08-13 23:12:00"
+        },
+        {
+            "id": 13,
+            "session_id": 1,
+            "player_id": 5,
+            "game_no": 1,
+            "pins": 187,
+            "recorded_at": "2026-08-13 21:15:00"
+        },
+        {
+            "id": 14,
+            "session_id": 1,
+            "player_id": 5,
+            "game_no": 2,
+            "pins": 151,
+            "recorded_at": "2026-08-13 22:15:00"
+        },
+        {
+            "id": 15,
+            "session_id": 1,
+            "player_id": 5,
+            "game_no": 3,
+            "pins": 156,
+            "recorded_at": "2026-08-13 23:15:00"
+        },
+        {
+            "id": 16,
+            "session_id": 1,
+            "player_id": 7,
+            "game_no": 1,
+            "pins": 160,
+            "recorded_at": "2026-08-13 21:21:00"
+        },
+        {
+            "id": 17,
+            "session_id": 1,
+            "player_id": 7,
+            "game_no": 2,
+            "pins": 165,
+            "recorded_at": "2026-08-13 22:21:00"
+        },
+        {
+            "id": 18,
+            "session_id": 1,
+            "player_id": 7,
+            "game_no": 3,
+            "pins": 170,
+            "recorded_at": "2026-08-13 23:21:00"
+        },
+        {
+            "id": 19,
+            "session_id": 1,
+            "player_id": 8,
+            "game_no": 1,
+            "pins": 157,
+            "recorded_at": "2026-08-13 21:24:00"
+        },
+        {
+            "id": 20,
+            "session_id": 1,
+            "player_id": 8,
+            "game_no": 2,
+            "pins": 162,
+            "recorded_at": "2026-08-13 22:24:00"
+        },
+        {
+            "id": 21,
+            "session_id": 1,
+            "player_id": 8,
+            "game_no": 3,
+            "pins": 126,
+            "recorded_at": "2026-08-13 23:24:00"
+        },
+        {
+            "id": 22,
+            "session_id": 2,
+            "player_id": 1,
+            "game_no": 1,
+            "pins": 198,
+            "recorded_at": "2026-08-17 21:03:00"
+        },
+        {
+            "id": 23,
+            "session_id": 2,
+            "player_id": 1,
+            "game_no": 2,
+            "pins": 203,
+            "recorded_at": "2026-08-17 22:03:00"
+        },
+        {
+            "id": 24,
+            "session_id": 2,
+            "player_id": 1,
+            "game_no": 3,
+            "pins": 167,
+            "recorded_at": "2026-08-17 23:03:00"
+        },
+        {
+            "id": 25,
+            "session_id": 2,
+            "player_id": 2,
+            "game_no": 1,
+            "pins": 162,
+            "recorded_at": "2026-08-17 21:06:00"
+        },
+        {
+            "id": 26,
+            "session_id": 2,
+            "player_id": 2,
+            "game_no": 2,
+            "pins": 167,
+            "recorded_at": "2026-08-17 22:06:00"
+        },
+        {
+            "id": 27,
+            "session_id": 2,
+            "player_id": 2,
+            "game_no": 3,
+            "pins": 172,
+            "recorded_at": "2026-08-17 23:06:00"
+        },
+        {
+            "id": 28,
+            "session_id": 2,
+            "player_id": 3,
+            "game_no": 1,
+            "pins": 149,
+            "recorded_at": "2026-08-17 21:09:00"
+        },
+        {
+            "id": 29,
+            "session_id": 2,
+            "player_id": 3,
+            "game_no": 2,
+            "pins": 154,
+            "recorded_at": "2026-08-17 22:09:00"
+        },
+        {
+            "id": 30,
+            "session_id": 2,
+            "player_id": 3,
+            "game_no": 3,
+            "pins": 159,
+            "recorded_at": "2026-08-17 23:09:00"
+        },
+        {
+            "id": 31,
+            "session_id": 2,
+            "player_id": 4,
+            "game_no": 1,
+            "pins": 174,
+            "recorded_at": "2026-08-17 21:12:00"
+        },
+        {
+            "id": 32,
+            "session_id": 2,
+            "player_id": 4,
+            "game_no": 2,
+            "pins": 179,
+            "recorded_at": "2026-08-17 22:12:00"
+        },
+        {
+            "id": 33,
+            "session_id": 2,
+            "player_id": 4,
+            "game_no": 3,
+            "pins": 184,
+            "recorded_at": "2026-08-17 23:12:00"
+        },
+        {
+            "id": 34,
+            "session_id": 2,
+            "player_id": 6,
+            "game_no": 1,
+            "pins": 143,
+            "recorded_at": "2026-08-17 21:18:00"
+        },
+        {
+            "id": 35,
+            "session_id": 2,
+            "player_id": 6,
+            "game_no": 2,
+            "pins": 148,
+            "recorded_at": "2026-08-17 22:18:00"
+        },
+        {
+            "id": 36,
+            "session_id": 2,
+            "player_id": 6,
+            "game_no": 3,
+            "pins": 153,
+            "recorded_at": "2026-08-17 23:18:00"
+        },
+        {
+            "id": 37,
+            "session_id": 2,
+            "player_id": 7,
+            "game_no": 1,
+            "pins": 167,
+            "recorded_at": "2026-08-17 21:21:00"
+        },
+        {
+            "id": 38,
+            "session_id": 2,
+            "player_id": 7,
+            "game_no": 2,
+            "pins": 172,
+            "recorded_at": "2026-08-17 22:21:00"
+        },
+        {
+            "id": 39,
+            "session_id": 2,
+            "player_id": 7,
+            "game_no": 3,
+            "pins": 177,
+            "recorded_at": "2026-08-17 23:21:00"
+        },
+        {
+            "id": 40,
+            "session_id": 2,
+            "player_id": 8,
+            "game_no": 1,
+            "pins": 123,
+            "recorded_at": "2026-08-17 21:24:00"
+        },
+        {
+            "id": 41,
+            "session_id": 2,
+            "player_id": 8,
+            "game_no": 2,
+            "pins": 128,
+            "recorded_at": "2026-08-17 22:24:00"
+        },
+        {
+            "id": 42,
+            "session_id": 2,
+            "player_id": 8,
+            "game_no": 3,
+            "pins": 133,
+            "recorded_at": "2026-08-17 23:24:00"
+        },
+        {
+            "id": 43,
+            "session_id": 3,
+            "player_id": 1,
+            "game_no": 1,
+            "pins": 205,
+            "recorded_at": "2026-08-20 21:03:00"
+        },
+        {
+            "id": 44,
+            "session_id": 3,
+            "player_id": 2,
+            "game_no": 1,
+            "pins": 169,
+            "recorded_at": "2026-08-20 21:06:00"
+        },
+        {
+            "id": 45,
+            "session_id": 3,
+            "player_id": 3,
+            "game_no": 1,
+            "pins": 156,
+            "recorded_at": "2026-08-20 21:09:00"
+        },
+        {
+            "id": 46,
+            "session_id": 3,
+            "player_id": 4,
+            "game_no": 1,
+            "pins": 181,
+            "recorded_at": "2026-08-20 21:12:00"
+        },
+        {
+            "id": 47,
+            "session_id": 3,
+            "player_id": 6,
+            "game_no": 1,
+            "pins": 150,
+            "recorded_at": "2026-08-20 21:18:00"
+        }
+    ]
+}
