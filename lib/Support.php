@@ -22,8 +22,8 @@ const HARI  = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
 
 /** Kawalan akses ikut peranan. Admin & Jurulatih ada akses penuh; Pemain hanya lihat. */
 const ROLE_PAGES = [
-    'Admin'     => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports'],
-    'Jurulatih' => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports'],
+    'Admin'     => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports', 'settings'],
+    'Jurulatih' => ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports', 'settings'],
     'Pemain'    => ['dashboard', 'attendance', 'scores'],
 ];
 
@@ -32,7 +32,7 @@ const PEMAIN_DENIED_ACTIONS = [
     'player.save', 'player.delete',
     'session.save', 'session.status', 'session.delete',
     'attendance.save', 'attendance.bulk', 'attendance.checkin',
-    'score.save', 'data.reset',
+    'score.save', 'data.reset', 'settings.save',
 ];
 
 function role_can_view(string $role, string $route): bool

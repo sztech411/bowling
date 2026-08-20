@@ -1,4 +1,4 @@
-<?php /** @var array $sessions @var array|null $editing @var array $tallies */ ?>
+<?php /** @var array $sessions @var array|null $editing @var array $tallies @var array $settings */ ?>
 
 <header class="phead">
   <p class="eyebrow">Penjadualan</p>
@@ -37,11 +37,27 @@
     </label>
     <label class="field">
       <span class="field__label">Lokasi</span>
-      <input name="venue" value="<?= e($editing['venue'] ?? 'Lite Superbowl') ?>">
+      <?php $curVenue = $editing['venue'] ?? $settings['default_venue']; ?>
+      <select name="venue">
+        <?php if ($curVenue !== '' && !in_array($curVenue, $settings['venues'], true)): ?>
+          <option selected><?= e($curVenue) ?></option>
+        <?php endif; ?>
+        <?php foreach ($settings['venues'] as $v): ?>
+          <option<?= $v === $curVenue ? ' selected' : '' ?>><?= e($v) ?></option>
+        <?php endforeach; ?>
+      </select>
     </label>
     <label class="field field--wide">
       <span class="field__label">Jurulatih</span>
-      <input name="coach" value="<?= e($editing['coach'] ?? 'Coach Rizal') ?>">
+      <?php $curCoach = $editing['coach'] ?? $settings['default_coach']; ?>
+      <select name="coach">
+        <?php if ($curCoach !== '' && !in_array($curCoach, $settings['coaches'], true)): ?>
+          <option selected><?= e($curCoach) ?></option>
+        <?php endif; ?>
+        <?php foreach ($settings['coaches'] as $c): ?>
+          <option<?= $c === $curCoach ? ' selected' : '' ?>><?= e($c) ?></option>
+        <?php endforeach; ?>
+      </select>
     </label>
     <label class="field field--wide">
       <span class="field__label">Catatan</span>

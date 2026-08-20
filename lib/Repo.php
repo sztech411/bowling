@@ -278,11 +278,11 @@ final class Repo
      * @return array{status:string, already:bool, player:string, session:string}
      */
     /**
-     * $icInput disahkan hanya apabila $verifyIc = true (laluan awam QR self
-     * check-in). Check-in manual oleh jurulatih di panel admin (identiti
-     * disahkan secara peribadi) tidak memerlukan IC.
+     * $noAhliInput disahkan hanya apabila $verifyMember = true (laluan awam
+     * QR self check-in). Check-in manual oleh jurulatih di panel admin
+     * (identiti disahkan secara peribadi) tidak memerlukan pengesahan ini.
      */
-    public function checkin(string $pin, int $playerId, string $icInput = '', bool $verifyIc = false): array
+    public function checkin(string $pin, int $playerId, string $noAhliInput = '', bool $verifyMember = false): array
     {
         $session = $this->sessionByPin($pin);
         if (!$session) {
@@ -296,14 +296,11 @@ final class Repo
             throw new RuntimeException('Pemain tidak dijumpai.');
         }
 
-        if ($verifyIc) {
-            $onFile = preg_replace('/\D/', '', (string)($player['ic'] ?? ''));
-            $typed = preg_replace('/\D/', '', $icInput);
-            if ($onFile === '') {
-                throw new RuntimeException('No. IC belum didaftarkan untuk pemain ini. Hubungi jurulatih.');
-            }
+        if ($verifyMember) {
+            $onFile = strtoupper(trim((string)($player['no_ahli'] ?? '')));
+            $typed = strtoupper(trim($noAhliInput));
             if ($typed === '' || $typed !== $onFile) {
-                throw new RuntimeException('No. IC tidak sepadan dengan nama yang dipilih.');
+                throw new RuntimeException('No. Ahli tidak sepadan dengan nama yang dipilih.');
             }
         }
 
@@ -539,6 +536,38 @@ final class Repo
     {
         $this->db->mutate(function (array &$data) {
             $data = Db::seed();
+        });
+    }
+
+    // ── Tetapan (senarai jurulatih/lokasi & lalai) ─────────────
+
+    public function settings(): array
+    {
+        $s = $this->db->all()['settings'] ?? [];
+        return array_merge([
+            'coaches' => [],
+            'venues' => [],
+            'default_coach' => '',
+            'default_venue' => '',
+        ], $s);
+    }
+
+    public function saveSettings(array $coaches, array $venues, string $defaultCoach, string $defaultVenue): array
+    {
+        return $this->db->mutate(function (array &$data) use ($coaches, $venues, $defaultCoach, $defaultVenue) {
+            if ($defaultCoach !== '' && !in_array($defaultCoach, $coaches, true)) {
+                $coaches[] = $defaultCoach;
+            }
+            if ($defaultVenue !== '' && !in_array($defaultVenue, $venues, true)) {
+                $venues[] = $defaultVenue;
+            }
+            $data['settings'] = [
+                'coaches' => $coaches,
+                'venues' => $venues,
+                'default_coach' => $defaultCoach,
+                'default_venue' => $defaultVenue,
+            ];
+            return $data['settings'];
         });
     }
 

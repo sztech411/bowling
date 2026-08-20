@@ -12,6 +12,7 @@ $navItems = [
     'attendance' => ['Kehadiran', 'Hadir', '✓'],
     'scores'     => ['Skor & Prestasi', 'Skor', '◈'],
     'reports'    => ['Laporan', 'Laporan', '◫'],
+    'settings'   => ['Tetapan', 'Tetapan', '⚙'],
 ];
 $navItems = array_filter($navItems, fn($k) => role_can_view((string)($user['role'] ?? ''), $k), ARRAY_FILTER_USE_KEY);
 ?>
@@ -33,7 +34,7 @@ $navItems = array_filter($navItems, fn($k) => role_can_view((string)($user['role
 
   <header class="topbar">
     <a class="topbar__brand" href="index.php?r=dashboard">
-      <span class="topbar__pin" aria-hidden="true"></span>
+      <img class="brand-logo" src="<?= asset_url('assets/logo-bowling.jpeg') ?>" alt="PIKO TAZ">
       <span class="topbar__name">PIKO<em>TAZ</em></span>
     </a>
 

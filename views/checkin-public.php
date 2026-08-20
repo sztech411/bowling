@@ -18,6 +18,7 @@
 
   <div class="gate__inner gate__inner--single">
     <div class="gate__form">
+      <img class="gate__logo" src="<?= asset_url('assets/logo-bowling.jpeg') ?>" alt="PIKO TAZ">
       <p class="eyebrow">Check-in Latihan</p>
 
       <?php if ($session): ?>
@@ -61,9 +62,9 @@
           </label>
 
           <label class="field">
-            <span class="field__label">No. Kad Pengenalan (IC)</span>
-            <input name="ic" class="mono" inputmode="numeric" maxlength="14" required
-                   placeholder="000000-00-0000" autocomplete="off">
+            <span class="field__label">No. Ahli</span>
+            <input name="no_ahli" class="mono" maxlength="20" required
+                   placeholder="MSN-1001" autocomplete="off">
           </label>
 
           <label class="field">

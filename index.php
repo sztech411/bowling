@@ -47,7 +47,7 @@ if ($route === 'checkin-public') {
     if ($isPost) {
         csrf_check();
         try {
-            $result = $repo->checkin($pin, post_int('player_id'), post_str('ic'), true);
+            $result = $repo->checkin($pin, post_int('player_id'), post_str('no_ahli'), true);
         } catch (Throwable $ex) {
             $error = $ex->getMessage();
         }
@@ -100,7 +100,6 @@ if ($isPost) {
                     'name' => $name,
                     'category' => post_str('category', 'Senior'),
                     'phone' => post_str('phone'),
-                    'ic' => preg_replace('/\D/', '', post_str('ic')),
                     'average' => max(0, min(300, post_int('average'))),
                     'active' => isset($_POST['active']),
                 ]);
@@ -210,6 +209,13 @@ if ($isPost) {
                 flash($n . ' keputusan game disimpan.');
                 redirect('scores');
 
+            case 'settings.save':
+                $coaches = array_values(array_unique(array_filter(array_map('trim', explode("\n", (string)($_POST['coaches'] ?? ''))))));
+                $venues = array_values(array_unique(array_filter(array_map('trim', explode("\n", (string)($_POST['venues'] ?? ''))))));
+                $repo->saveSettings($coaches, $venues, post_str('default_coach'), post_str('default_venue'));
+                flash('Tetapan lalai dikemas kini.');
+                redirect('settings');
+
             case 'data.reset':
                 $repo->reset();
                 unset($_SESSION['view_session']);
@@ -256,7 +262,7 @@ if ($route === 'export') {
 
 // ══ Paparan (GET) ══
 
-$pages = ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports'];
+$pages = ['dashboard', 'players', 'sessions', 'checkin', 'attendance', 'scores', 'reports', 'settings'];
 if (!in_array($route, $pages, true)) {
     $route = 'dashboard';
 }
@@ -302,6 +308,11 @@ switch ($route) {
         foreach ($sessions as $s) {
             $tallies[(int)$s['id']] = $repo->tally((int)$s['id']);
         }
+        $settings = $repo->settings();
+        break;
+
+    case 'settings':
+        $settings = $repo->settings();
         break;
 
     case 'checkin':

@@ -18,9 +18,7 @@
 
   <div class="gate__inner">
     <div class="gate__brand">
-      <div class="pinrack" aria-hidden="true">
-        <?php for ($i = 0; $i < 10; $i++): ?><span></span><?php endfor; ?>
-      </div>
+      <img class="gate__logo" src="<?= asset_url('assets/logo-bowling.jpeg') ?>" alt="PIKO TAZ">
       <p class="eyebrow">Kelab Boling · Est. 2019</p>
       <h1 class="gate__title">PIKO<em>TAZ</em></h1>
       <p class="gate__tag">Sistem Kehadiran Latihan</p>
