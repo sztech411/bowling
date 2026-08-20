@@ -164,9 +164,6 @@ p:last-child { margin-bottom: 0; }
   transform: translateY(-2px);
   box-shadow: 0 14px 30px -10px rgba(255,61,104,.65);
 }
-.gate__logo {
-  animation: logoPop .6s cubic-bezier(.2,.8,.25,1) both;
-}
 .gate__error {
   margin: 0 0 1.1rem;
   padding: .7rem .9rem;
@@ -696,7 +693,6 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
   width: auto;
   border-radius: 14px;
   box-shadow: var(--shadow-lg);
-  animation: logoPop .6s cubic-bezier(.2,.8,.25,1) both;
 }
 .loadscreen__title {
   position: relative;
@@ -750,7 +746,6 @@ input.tick { width: 24px; height: 24px; accent-color: var(--pine); cursor: point
   100% { transform: translate(-2%, 2%) scale(1); }
 }
 @keyframes formIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
-@keyframes logoPop { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: scale(1); } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
