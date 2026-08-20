@@ -81,23 +81,24 @@ final class Db
     {
         $today = date('Y-m-d');
         $players = [
-            ['Afizan Amer', 'Senior', 'MSN-1001', '013-2200481', 186],
-            ['Muhammad Hakim', 'Senior', 'MSN-1002', '019-4471203', 178],
-            ['Danish Irfan', 'Junior', 'MSN-1003', '011-3390118', 152],
-            ['Nursyazwani Aida', 'Ladies', 'MSN-1004', '012-6628870', 164],
-            ['Izzat Danial', 'Senior', 'MSN-1005', '017-8812440', 171],
-            ['Muhammad Adam', 'Junior', 'MSN-1006', '014-2298017', 148],
-            ['Farah Nabilah', 'Ladies', 'MSN-1007', '018-7734029', 159],
-            ['Zulhilmi Rashid', 'Youth', 'MSN-1008', '016-5540912', 143],
+            ['Afizan Amer', 'Senior', 'MSN-1001', '013-2200481', 186, '900112015533'],
+            ['Muhammad Hakim', 'Senior', 'MSN-1002', '019-4471203', 178, '920305086214'],
+            ['Danish Irfan', 'Junior', 'MSN-1003', '011-3390118', 152, '050822041987'],
+            ['Nursyazwani Aida', 'Ladies', 'MSN-1004', '012-6628870', 164, '981130025461'],
+            ['Izzat Danial', 'Senior', 'MSN-1005', '017-8812440', 171, '890617076329'],
+            ['Muhammad Adam', 'Junior', 'MSN-1006', '014-2298017', 148, '060214038756'],
+            ['Farah Nabilah', 'Ladies', 'MSN-1007', '018-7734029', 159, '970425065190'],
+            ['Zulhilmi Rashid', 'Youth', 'MSN-1008', '016-5540912', 143, '030901087245'],
         ];
         $rows = [];
-        foreach ($players as $i => [$name, $cat, $no, $tel, $avg]) {
+        foreach ($players as $i => [$name, $cat, $no, $tel, $avg, $ic]) {
             $rows[] = [
                 'id' => $i + 1,
                 'no_ahli' => $no,
                 'name' => $name,
                 'category' => $cat,
                 'phone' => $tel,
+                'ic' => $ic,
                 'average' => $avg,
                 'active' => true,
                 'joined_at' => date('Y-m-d', strtotime("-" . (30 + $i * 17) . " days")),

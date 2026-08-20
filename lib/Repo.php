@@ -277,7 +277,12 @@ final class Repo
      * Check-in melalui kod sesi. Lewat jika lebih 15 minit selepas waktu mula.
      * @return array{status:string, already:bool, player:string, session:string}
      */
-    public function checkin(string $pin, int $playerId): array
+    /**
+     * $icInput disahkan hanya apabila $verifyIc = true (laluan awam QR self
+     * check-in). Check-in manual oleh jurulatih di panel admin (identiti
+     * disahkan secara peribadi) tidak memerlukan IC.
+     */
+    public function checkin(string $pin, int $playerId, string $icInput = '', bool $verifyIc = false): array
     {
         $session = $this->sessionByPin($pin);
         if (!$session) {
@@ -289,6 +294,17 @@ final class Repo
         $player = $this->player($playerId);
         if (!$player) {
             throw new RuntimeException('Pemain tidak dijumpai.');
+        }
+
+        if ($verifyIc) {
+            $onFile = preg_replace('/\D/', '', (string)($player['ic'] ?? ''));
+            $typed = preg_replace('/\D/', '', $icInput);
+            if ($onFile === '') {
+                throw new RuntimeException('No. IC belum didaftarkan untuk pemain ini. Hubungi jurulatih.');
+            }
+            if ($typed === '' || $typed !== $onFile) {
+                throw new RuntimeException('No. IC tidak sepadan dengan nama yang dipilih.');
+            }
         }
 
         $grace = strtotime($session['date'] . ' ' . $session['start']) + 15 * 60;

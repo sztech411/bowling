@@ -61,6 +61,12 @@
           </label>
 
           <label class="field">
+            <span class="field__label">No. Kad Pengenalan (IC)</span>
+            <input name="ic" class="mono" inputmode="numeric" maxlength="14" required
+                   placeholder="000000-00-0000" autocomplete="off">
+          </label>
+
+          <label class="field">
             <span class="field__label">Kod sesi</span>
             <input name="pin" class="mono" inputmode="numeric" maxlength="6" required
                    value="<?= e($pin) ?>" placeholder="000000">

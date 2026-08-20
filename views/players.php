@@ -39,6 +39,12 @@
     </label>
 
     <label class="field">
+      <span class="field__label">No. Kad Pengenalan (IC)</span>
+      <input name="ic" class="mono" inputmode="numeric" maxlength="14" placeholder="000000-00-0000"
+             value="<?= e($editing['ic'] ?? '') ?>">
+    </label>
+
+    <label class="field">
       <span class="field__label">Purata (average)</span>
       <input name="average" type="number" min="0" max="300" value="<?= (int)($editing['average'] ?? 150) ?>">
     </label>
@@ -59,13 +65,13 @@
     <table class="sheet">
       <thead>
         <tr>
-          <th>No. Ahli</th><th>Nama</th><th>Kategori</th><th>Telefon</th>
+          <th>No. Ahli</th><th>Nama</th><th>Kategori</th><th>Telefon</th><th>IC</th>
           <th class="num">Kehadiran</th><th class="num">Purata Skor</th><th class="num">Tertinggi</th><th></th>
         </tr>
       </thead>
       <tbody>
         <?php if (!$players): ?>
-          <tr><td colspan="8">
+          <tr><td colspan="9">
             <div class="empty"><strong>Senarai kosong</strong>Tambah pemain pertama menggunakan borang di atas.</div>
           </td></tr>
         <?php else: foreach ($players as $p): $id = (int)$p['id']; $ss = $scoreStats[$id] ?? ['games' => 0, 'avg' => 0, 'high' => 0]; ?>
@@ -77,6 +83,10 @@
             </td>
             <td><?= e($p['category']) ?></td>
             <td><?= e($p['phone'] ?: '—') ?></td>
+            <td>
+              <?php $ic = preg_replace('/\D/', '', (string)($p['ic'] ?? '')); ?>
+              <?= $ic !== '' ? '<span class="code">••••••-••-' . e(substr($ic, -4)) . '</span>' : '—' ?>
+            </td>
             <td class="num">
               <?php $r = $rates[$id] ?? null; ?>
               <?php if ($r === null): ?>—<?php else: ?>

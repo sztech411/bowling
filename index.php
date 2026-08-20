@@ -47,7 +47,7 @@ if ($route === 'checkin-public') {
     if ($isPost) {
         csrf_check();
         try {
-            $result = $repo->checkin($pin, post_int('player_id'));
+            $result = $repo->checkin($pin, post_int('player_id'), post_str('ic'), true);
         } catch (Throwable $ex) {
             $error = $ex->getMessage();
         }
@@ -100,6 +100,7 @@ if ($isPost) {
                     'name' => $name,
                     'category' => post_str('category', 'Senior'),
                     'phone' => post_str('phone'),
+                    'ic' => preg_replace('/\D/', '', post_str('ic')),
                     'average' => max(0, min(300, post_int('average'))),
                     'active' => isset($_POST['active']),
                 ]);
